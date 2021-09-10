@@ -15,6 +15,7 @@
  */
 package volgyerdo.commons.math.tensor;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -31,15 +32,18 @@ import volgyerdo.commons.primitive.ShortUnaryOperator;
  *
  * @author Pocze Zsolt
  */
-public class ByteTensor extends Tensor {
+public class ByteTensor extends Tensor{
 
-    public final byte[] values;
+    public byte[] values;
+
+    public ByteTensor() {
+    }
 
     public ByteTensor(int... dimensions) {
         super(TYPE.BYTE, dimensions);
         values = new byte[ArrayUtils.product(dimensions)];
     }
-
+    
     @Override
     public Tensor convertTo(TYPE type) {
         return switch (type) {

@@ -33,8 +33,11 @@ import volgyerdo.commons.primitive.ShortUnaryOperator;
  */
 public class ShortTensor extends Tensor {
 
-    public final short[] values;
+    public short[] values;
 
+    public ShortTensor() {
+    }
+    
     public ShortTensor(int... dimensions) {
         super(TYPE.SHORT, dimensions);
         values = new short[ArrayUtils.product(dimensions)];

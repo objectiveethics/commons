@@ -15,6 +15,7 @@
  */
 package volgyerdo.commons.math.tensor;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -31,9 +32,9 @@ import volgyerdo.commons.primitive.ShortUnaryOperator;
  *
  * @author Volgyerdo Nonprofit Kft.
  */
-public class FloatTensor extends Tensor {
+public class FloatTensor extends Tensor{
 
-    public final float[] values;
+    public float[] values;
 
     public FloatTensor(int... dimensions) {
         super(TYPE.FLOAT, dimensions);

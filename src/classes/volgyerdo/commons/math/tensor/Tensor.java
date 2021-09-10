@@ -15,6 +15,7 @@
  */
 package volgyerdo.commons.math.tensor;
 
+import java.io.Serializable;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import volgyerdo.commons.primitive.ByteSupplier;
@@ -28,15 +29,20 @@ import volgyerdo.commons.primitive.ShortUnaryOperator;
  *
  * @author Volgyerdo Nonprofit Kft.
  */
-public abstract class Tensor {
+public abstract class Tensor implements Serializable{
 
+public static final long versionUID = 1L;
+    
     public static enum TYPE {
         BYTE, SHORT, FLOAT, OBJECT
     };
 
-    public final TYPE type;
-    public final int[] dimensions;
-    public final int[] multipliers;
+    public TYPE type;
+    public int[] dimensions;
+    public int[] multipliers;
+    
+    public Tensor(){
+    }
 
     protected Tensor(TYPE type, int... dimensions) {
         checkNewDimensions(dimensions);

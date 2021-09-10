@@ -32,8 +32,11 @@ import volgyerdo.commons.primitive.ShortUnaryOperator;
  */
 public class ObjectTensor extends Tensor {
 
-    public final Object[] values;
+    public Object[] values;
 
+    public ObjectTensor() {
+    }
+    
     public ObjectTensor(int... dimensions) {
         super(TYPE.OBJECT, dimensions);
         values = new Object[ArrayUtils.product(dimensions)];
