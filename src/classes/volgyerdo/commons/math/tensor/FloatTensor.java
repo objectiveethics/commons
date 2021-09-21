@@ -15,7 +15,6 @@
  */
 package volgyerdo.commons.math.tensor;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;

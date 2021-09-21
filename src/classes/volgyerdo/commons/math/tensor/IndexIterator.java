@@ -15,8 +15,6 @@
  */
 package volgyerdo.commons.math.tensor;
 
-import java.util.Arrays;
-
 /**
  *
  * @author Volgyerdo Nonprofit Kft.
