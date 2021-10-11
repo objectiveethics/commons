@@ -23,7 +23,7 @@ public class CompressionInformation {
         } catch (IOException ex) {
             //
         }
-        return values.length * 8;
+        return bos.toByteArray().length * 8;
     }
     
     public static double information(short[] values) {
