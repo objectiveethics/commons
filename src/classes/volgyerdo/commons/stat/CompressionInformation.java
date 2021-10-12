@@ -5,9 +5,6 @@
  */
 package volgyerdo.commons.stat;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.zip.GZIPOutputStream;
 import volgyerdo.commons.primitive.ArrayUtils;
 
 /**
@@ -16,30 +13,28 @@ import volgyerdo.commons.primitive.ArrayUtils;
  */
 public class CompressionInformation {
 
+    public static double information(Object object) {
+        return ArrayUtils.toGZIPByteArray(object).length * 8;
+    }
+    
     public static double information(byte[] values) {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try ( GZIPOutputStream zipStream = new GZIPOutputStream(bos);) {
-            zipStream.write(values);
-        } catch (IOException ex) {
-            //
-        }
-        return bos.toByteArray().length * 8;
+        return ArrayUtils.toGZIP(values).length * 8;
     }
     
     public static double information(short[] values) {
-        return information(ArrayUtils.convertToByteArray(values));
+        return information(ArrayUtils.toByteArray(values));
     }
 
     public static double information(int[] values) {
-        return information(ArrayUtils.convertToByteArray(values));
+        return information(ArrayUtils.toByteArray(values));
     }
 
     public static double information(float[] values) {
-        return information(ArrayUtils.convertToByteArray(values));
+        return information(ArrayUtils.toByteArray(values));
     }
 
     public static double information(double[] values) {
-        return information(ArrayUtils.convertToByteArray(values));
+        return information(ArrayUtils.toByteArray(values));
     }
 
     public static double information(char[] values) {

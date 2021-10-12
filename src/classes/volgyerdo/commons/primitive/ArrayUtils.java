@@ -15,6 +15,11 @@
  */
 package volgyerdo.commons.primitive;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.zip.GZIPOutputStream;
+
 /**
  *
  * @author Volgyerdo Nonprofit Kft.
@@ -171,7 +176,7 @@ public class ArrayUtils {
         }
     }
 
-    public static byte[] convertToByteArray(short[] array) {
+    public static byte[] toByteArray(short[] array) {
         if (array == null) {
             return null;
         }
@@ -183,7 +188,7 @@ public class ArrayUtils {
         return byteArray;
     }
 
-    public static byte[] convertToByteArray(int[] array) {
+    public static byte[] toByteArray(int[] array) {
         if (array == null) {
             return null;
         }
@@ -197,7 +202,7 @@ public class ArrayUtils {
         return byteArray;
     }
 
-    public static byte[] convertToByteArray(long[] array) {
+    public static byte[] toByteArray(long[] array) {
         if (array == null) {
             return null;
         }
@@ -215,7 +220,7 @@ public class ArrayUtils {
         return byteArray;
     }
 
-    public static byte[] convertToByteArray(float[] array) {
+    public static byte[] toByteArray(float[] array) {
         if (array == null) {
             return null;
         }
@@ -230,7 +235,7 @@ public class ArrayUtils {
         return byteArray;
     }
 
-    public static byte[] convertToByteArray(double[] array) {
+    public static byte[] toByteArray(double[] array) {
         if (array == null) {
             return null;
         }
@@ -249,7 +254,7 @@ public class ArrayUtils {
         return byteArray;
     }
 
-    public static byte[] convertToByteArray(boolean[] array) {
+    public static byte[] toByteArray(boolean[] array) {
         if (array == null) {
             return null;
         }
@@ -264,7 +269,7 @@ public class ArrayUtils {
         return byteArray;
     }
     
-    public static byte[] convertToByteArray(char[] array) {
+    public static byte[] toByteArray(char[] array) {
         if (array == null) {
             return null;
         }
@@ -274,5 +279,36 @@ public class ArrayUtils {
             byteArray[i * 2 + 1] = (byte) ((array[i] >> 8) & 0xff);
         }
         return byteArray;
+    }
+    
+    public static byte[] toGZIP(byte[] values) {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try (GZIPOutputStream zipStream = new GZIPOutputStream(bos);) {
+            zipStream.write(values);
+        } catch (IOException ex) {
+            //
+        }
+        return bos.toByteArray();
+    }
+    
+    public static byte[] toByteArray(Object object){
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try (ObjectOutputStream objectStream = new ObjectOutputStream(bos)) {
+            objectStream.writeObject(object);
+        } catch (IOException ex) {
+            //
+        }
+        return bos.toByteArray();
+    }
+    
+    public static byte[] toGZIPByteArray(Object object){
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try (GZIPOutputStream zipStream = new GZIPOutputStream(bos);
+                ObjectOutputStream objectStream = new ObjectOutputStream(zipStream)) {
+            objectStream.writeObject(object);
+        } catch (IOException ex) {
+            //
+        }
+        return bos.toByteArray();
     }
 }

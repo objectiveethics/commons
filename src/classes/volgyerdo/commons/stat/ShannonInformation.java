@@ -5,12 +5,19 @@
  */
 package volgyerdo.commons.stat;
 
+import volgyerdo.commons.primitive.ArrayUtils;
+
 /**
  *
  * @author Volgyerdo Nonprofit Kft.
  */
 public class ShannonInformation {
 
+    public static double information(Object object) {
+        byte[] array = ArrayUtils.toByteArray(object);
+        return ShannonEntropy.entropy(array) * array.length;
+    }
+    
     public static double information(byte[] values) {
         return ShannonEntropy.entropy(values) * values.length;
     }
