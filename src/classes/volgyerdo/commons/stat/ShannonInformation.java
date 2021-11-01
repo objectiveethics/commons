@@ -18,6 +18,10 @@ public class ShannonInformation {
         return ShannonEntropy.entropy(array) * array.length;
     }
     
+    public static double information(boolean[] values) {
+        return ShannonEntropy.entropy(values) * values.length;
+    }
+    
     public static double information(byte[] values) {
         return ShannonEntropy.entropy(values) * values.length;
     }

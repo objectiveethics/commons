@@ -176,6 +176,17 @@ public class ArrayUtils {
         }
     }
 
+    public static boolean[] toBooleanArray(byte[] array) {
+        if (array == null) {
+            return null;
+        }
+        boolean[] booleanArray = new boolean[array.length * 8];
+        for (int i = 0; i < array.length; i++) {
+            System.arraycopy(toBoolArray(array[i]), 0, booleanArray, i * 8, 8);
+        }
+        return booleanArray;
+    }
+
     public static byte[] toByteArray(short[] array) {
         if (array == null) {
             return null;
@@ -268,7 +279,7 @@ public class ArrayUtils {
         }
         return byteArray;
     }
-    
+
     public static byte[] toByteArray(char[] array) {
         if (array == null) {
             return null;
@@ -280,35 +291,162 @@ public class ArrayUtils {
         }
         return byteArray;
     }
-    
+
     public static byte[] toGZIP(byte[] values) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try (GZIPOutputStream zipStream = new GZIPOutputStream(bos);) {
+        try ( GZIPOutputStream zipStream = new GZIPOutputStream(bos);) {
             zipStream.write(values);
         } catch (IOException ex) {
             //
         }
         return bos.toByteArray();
     }
-    
-    public static byte[] toByteArray(Object object){
+
+    public static byte[] toByteArray(Object object) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try (ObjectOutputStream objectStream = new ObjectOutputStream(bos)) {
+        try ( ObjectOutputStream objectStream = new ObjectOutputStream(bos)) {
             objectStream.writeObject(object);
         } catch (IOException ex) {
             //
         }
         return bos.toByteArray();
     }
-    
-    public static byte[] toGZIPByteArray(Object object){
+
+    public static byte[] toGZIPByteArray(Object object) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        try (GZIPOutputStream zipStream = new GZIPOutputStream(bos);
-                ObjectOutputStream objectStream = new ObjectOutputStream(zipStream)) {
+        try ( GZIPOutputStream zipStream = new GZIPOutputStream(bos);  ObjectOutputStream objectStream = new ObjectOutputStream(zipStream)) {
             objectStream.writeObject(object);
         } catch (IOException ex) {
             //
         }
         return bos.toByteArray();
+    }
+
+    public static byte toByte(boolean[] source) {
+        if (source.length != 8) {
+            throw new IllegalArgumentException();
+        }
+        byte b = 0;
+        for (int i = 0; i < 8; i++) {
+            if (source[i]) {
+                b |= 1 << i;
+            }
+        }
+        return b;
+    }
+
+    public static short toShort(boolean[] source) {
+        if (source.length != 16) {
+            throw new IllegalArgumentException();
+        }
+        short b = 0;
+        for (int i = 0; i < 16; i++) {
+            if (source[i]) {
+                b |= 1 << i;
+            }
+        }
+        return b;
+    }
+
+    public static int toInt(boolean[] source) {
+        if (source.length != 32) {
+            throw new IllegalArgumentException();
+        }
+        int b = 0;
+        for (int i = 0; i < 32; i++) {
+            if (source[i]) {
+                b |= 1 << i;
+            }
+        }
+        return b;
+    }
+
+    public static long toLong(boolean[] source) {
+        if (source.length != 64) {
+            throw new IllegalArgumentException();
+        }
+        long b = 0;
+        for (int i = 0; i < 64; i++) {
+            if (source[i]) {
+                b |= 1L << i;
+            }
+        }
+        return b;
+    }
+
+    public static float toFloat(boolean[] source) {
+        if (source.length != 32) {
+            throw new IllegalArgumentException();
+        }
+        int b = 0;
+        for (int i = 0; i < 32; i++) {
+            if (source[i]) {
+                b |= 1 << i;
+            }
+        }
+        return Float.intBitsToFloat(b);
+    }
+
+    public static double toDouble(boolean[] source) {
+        if (source.length != 64) {
+            throw new IllegalArgumentException();
+        }
+        long b = 0;
+        for (int i = 0; i < 64; i++) {
+            if (source[i]) {
+                b |= 1L << i;
+            }
+        }
+        return Double.longBitsToDouble(b);
+    }
+
+    public static boolean[] toBoolArray(byte b) {
+        boolean[] array = new boolean[8];
+        for (int i = 0; i < 8; i++) {
+            array[i] = (b & (1 << i)) != 0;
+        }
+        return array;
+    }
+
+    public static boolean[] toBoolArray(short b) {
+        boolean[] array = new boolean[16];
+        for (int i = 0; i < 16; i++) {
+            array[i] = (b & (1 << i)) != 0;
+        }
+        return array;
+    }
+
+    public static boolean[] toBoolArray(int b) {
+        boolean[] array = new boolean[32];
+        for (int i = 0; i < 32; i++) {
+            array[i] = (b & (1 << i)) != 0;
+        }
+        return array;
+    }
+
+    public static boolean[] toBoolArray(long b) {
+        boolean[] array = new boolean[64];
+        for (int i = 0; i < 64; i++) {
+            array[i] = (b & (1L << i)) != 0;
+        }
+        return array;
+    }
+
+    public static boolean[] toBoolArray(float b) {
+        boolean[] array = new boolean[32];
+        int n = Float.floatToRawIntBits(b);
+        for (int i = 0; i < 32; i++) {
+            array[i] = (n & (1 << i)) != 0;
+        }
+        return array;
+    }
+
+    public static boolean[] toBoolArray(double b) {
+        boolean[] array = new boolean[64];
+        long n = Double.doubleToRawLongBits(b);
+        for (int i = 0; i < 64; i++) {
+            array[i] = (n & (1L << i)) != 0;
+        }
+        return array;
     }
 }

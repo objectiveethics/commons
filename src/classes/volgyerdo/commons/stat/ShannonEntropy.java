@@ -14,6 +14,24 @@ import java.util.Map;
  */
 public class ShannonEntropy {
 
+    public static double entropy(boolean[] values) {
+        Map<Boolean, Integer> map = new HashMap<>();
+        for (boolean x : values) {
+            Integer frequency = map.get(x);
+            if (frequency == null) {
+                map.put(x, 1);
+            } else {
+                map.put(x, frequency + 1);
+            }
+        }
+        double entropy = 0;
+        for (boolean x : map.keySet()) {
+            double frequency = ((double) map.get(x)) / values.length; 
+            entropy -= frequency * (Math.log(frequency) / Math.log(2));
+        }
+        return entropy;
+    }
+    
     public static double entropy(byte[] values) {
         Map<Byte, Integer> map = new HashMap<>();
         for (byte x : values) {
