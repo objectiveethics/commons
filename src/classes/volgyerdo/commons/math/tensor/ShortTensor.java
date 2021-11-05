@@ -530,6 +530,27 @@ public class ShortTensor extends Tensor {
             }
         }
     }
+    
+    @Override
+    public Tensor rotate() {
+        ShortTensor flipped = (ShortTensor) createSimilar();
+        int[] indices = new int[dimensions.length];
+        Arrays.fill(indices, 0);
+        rotateRecursive(flipped, 0, indices);
+        return flipped;
+    }
+
+    private void rotateRecursive(ShortTensor tensor, int current, int[] indices) {
+        if (current == indices.length) {
+            tensor.setShortValue(getShortValue(indices), reverseIndex(indices));
+        } else {
+            int next = current + 1;
+            for (int i = 0; i < dimensions[current]; i++) {
+                indices[current] = i;
+                rotateRecursive(tensor, next, indices);
+            }
+        }
+    }
 
     @Override
     public void hadamardProduct(Tensor multiplier) {

@@ -411,7 +411,7 @@ public class ObjectTensor extends Tensor {
     @Override
     public Tensor transpose() {
         try {
-            FloatTensor clone = (FloatTensor) clone();
+            ObjectTensor clone = (ObjectTensor) clone();
             int[] indices = new int[dimensions.length];
             Arrays.fill(indices, 0);
             transposeRecursive(clone, 0, indices);
@@ -421,7 +421,7 @@ public class ObjectTensor extends Tensor {
         }
     }
 
-    private void transposeRecursive(FloatTensor tensor, int current, int[] indices) {
+    private void transposeRecursive(ObjectTensor tensor, int current, int[] indices) {
         if (current == indices.length) {
             tensor.setObjectValue(getObjectValue(indices), ArrayUtils.reverse(indices));
         } else {
@@ -429,6 +429,27 @@ public class ObjectTensor extends Tensor {
             for (int i = 0; i < dimensions[current]; i++) {
                 indices[current] = i;
                 transposeRecursive(tensor, next, indices);
+            }
+        }
+    }
+    
+    @Override
+    public Tensor rotate() {
+        ObjectTensor flipped = (ObjectTensor) createSimilar();
+        int[] indices = new int[dimensions.length];
+        Arrays.fill(indices, 0);
+        rotateRecursive(flipped, 0, indices);
+        return flipped;
+    }
+
+    private void rotateRecursive(ObjectTensor tensor, int current, int[] indices) {
+        if (current == indices.length) {
+            tensor.setObjectValue(getObjectValue(indices), reverseIndex(indices));
+        } else {
+            int next = current + 1;
+            for (int i = 0; i < dimensions[current]; i++) {
+                indices[current] = i;
+                rotateRecursive(tensor, next, indices);
             }
         }
     }

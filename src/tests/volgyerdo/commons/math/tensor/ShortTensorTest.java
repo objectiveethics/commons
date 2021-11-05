@@ -602,6 +602,24 @@ public class ShortTensorTest {
         assertEquals("Transposed tensor", (byte) 2, transposed.getShortValue(1, 1));
         assertEquals("Transposed tensor", (byte) 78, transposed.getShortValue(1, 2));
     }
+    
+    @Test
+    public void testRotateTensor() {
+        ShortTensor t1 = new ShortTensor(3, 2);
+        t1.setShortValue((short) -34, 0, 0);
+        t1.setShortValue((short) -67, 1, 0);
+        t1.setShortValue((short) 6, 2, 0);
+        t1.setShortValue((short) 34, 0, 1);
+        t1.setShortValue((short) 2, 1, 1);
+        t1.setShortValue((short) 78, 2, 1);
+        Tensor rotated = t1.rotate();
+        assertEquals("Transposed tensor", (byte) -34, rotated.getShortValue(2, 1));
+        assertEquals("Transposed tensor", (byte) -67, rotated.getShortValue(1, 1));
+        assertEquals("Transposed tensor", (byte) 6, rotated.getShortValue(0, 1));
+        assertEquals("Transposed tensor", (byte) 34, rotated.getShortValue(2, 0));
+        assertEquals("Transposed tensor", (byte) 2, rotated.getShortValue(1, 0));
+        assertEquals("Transposed tensor", (byte) 78, rotated.getShortValue(0, 0));
+    }
 
     @Test
     public void testCloneTensor() throws CloneNotSupportedException {

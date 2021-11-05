@@ -195,6 +195,8 @@ public static final long versionUID = 1L;
     public abstract void abs();
 
     public abstract Tensor transpose();
+    
+    public abstract Tensor rotate();
 
     public abstract void hadamardProduct(Tensor multiplier);
 
@@ -283,6 +285,14 @@ public static final long versionUID = 1L;
             index += multipliers[i] * indices[i];
         }
         return index;
+    }
+    
+    protected int[] reverseIndex(int[] indices) {
+        int[] reversed = new int[indices.length];
+        for (int i = 0; i < indices.length; i++) {
+            reversed[i] = dimensions[i] - indices[i] - 1;
+        }
+        return reversed;
     }
 
     protected final void checkNull(Tensor tensor) {

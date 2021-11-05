@@ -604,6 +604,24 @@ public class ByteTensorTest {
         assertEquals("Transposed tensor", (byte) 2, transposed.getByteValue(1, 1));
         assertEquals("Transposed tensor", (byte) 78, transposed.getByteValue(1, 2));
     }
+    
+    @Test
+    public void testRotateTensor() {
+        ByteTensor t1 = new ByteTensor(3, 2);
+        t1.setByteValue((byte) -34, 0, 0);
+        t1.setByteValue((byte) -67, 1, 0);
+        t1.setByteValue((byte) 6, 2, 0);
+        t1.setByteValue((byte) 34, 0, 1);
+        t1.setByteValue((byte) 2, 1, 1);
+        t1.setByteValue((byte) 78, 2, 1);
+        Tensor rotated = t1.rotate();
+        assertEquals("Transposed tensor", (byte) -34, rotated.getByteValue(2, 1));
+        assertEquals("Transposed tensor", (byte) -67, rotated.getByteValue(1, 1));
+        assertEquals("Transposed tensor", (byte) 6, rotated.getByteValue(0, 1));
+        assertEquals("Transposed tensor", (byte) 34, rotated.getByteValue(2, 0));
+        assertEquals("Transposed tensor", (byte) 2, rotated.getByteValue(1, 0));
+        assertEquals("Transposed tensor", (byte) 78, rotated.getByteValue(0, 0));
+    }
 
     @Test
     public void testCloneTensor() throws CloneNotSupportedException {

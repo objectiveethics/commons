@@ -31,7 +31,7 @@ import volgyerdo.commons.primitive.ShortUnaryOperator;
  *
  * @author Volgyerdo Nonprofit Kft.
  */
-public class FloatTensor extends Tensor{
+public class FloatTensor extends Tensor {
 
     public float[] values;
 
@@ -521,6 +521,27 @@ public class FloatTensor extends Tensor{
     }
 
     @Override
+    public Tensor rotate() {
+        FloatTensor flipped = (FloatTensor) createSimilar();
+        int[] indices = new int[dimensions.length];
+        Arrays.fill(indices, 0);
+        rotateRecursive(flipped, 0, indices);
+        return flipped;
+    }
+
+    private void rotateRecursive(FloatTensor tensor, int current, int[] indices) {
+        if (current == indices.length) {
+            tensor.setFloatValue(getFloatValue(indices), reverseIndex(indices));
+        } else {
+            int next = current + 1;
+            for (int i = 0; i < dimensions[current]; i++) {
+                indices[current] = i;
+                rotateRecursive(tensor, next, indices);
+            }
+        }
+    }
+
+    @Override
     public void hadamardProduct(Tensor multiplier) {
         checkNull(multiplier);
         checkClass(multiplier);
@@ -620,9 +641,9 @@ public class FloatTensor extends Tensor{
         System.arraycopy(values, 0, copy.values, 0, values.length);
         return copy;
     }
-    
+
     @Override
-    public IndexIterator indexIterator(){
+    public IndexIterator indexIterator() {
         return new IndexIterator(dimensions);
     }
 

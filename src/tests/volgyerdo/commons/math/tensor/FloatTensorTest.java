@@ -604,6 +604,24 @@ public class FloatTensorTest {
         assertEquals("Transposed tensor", (float) 2, transposed.getFloatValue(1, 1), FLOATING_VALUE_ACCURACY);
         assertEquals("Transposed tensor", (float) 78.234, transposed.getFloatValue(1, 2), FLOATING_VALUE_ACCURACY);
     }
+    
+    @Test
+    public void testRotateTensor() {
+        FloatTensor t1 = new FloatTensor(3, 2);
+        t1.setFloatValue((float) -34, 0, 0);
+        t1.setFloatValue((float) -67.345, 1, 0);
+        t1.setFloatValue((float) 6, 2, 0);
+        t1.setFloatValue((float) 34, 0, 1);
+        t1.setFloatValue((float) 2, 1, 1);
+        t1.setFloatValue((float) 78.234, 2, 1);
+        Tensor rotated = t1.rotate();
+        assertEquals("Transposed tensor", (float) -34, rotated.getFloatValue(2, 1), FLOATING_VALUE_ACCURACY);
+        assertEquals("Transposed tensor", (float) -67.345, rotated.getFloatValue(1, 1), FLOATING_VALUE_ACCURACY);
+        assertEquals("Transposed tensor", (float) 6, rotated.getFloatValue(0, 1), FLOATING_VALUE_ACCURACY);
+        assertEquals("Transposed tensor", (float) 34, rotated.getFloatValue(2, 0), FLOATING_VALUE_ACCURACY);
+        assertEquals("Transposed tensor", (float) 2, rotated.getFloatValue(1, 0), FLOATING_VALUE_ACCURACY);
+        assertEquals("Transposed tensor", (float) 78.234, rotated.getFloatValue(0, 0), FLOATING_VALUE_ACCURACY);
+    }
 
     @Test
     public void testCloneTensor() throws CloneNotSupportedException {

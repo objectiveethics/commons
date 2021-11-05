@@ -538,6 +538,27 @@ public class ByteTensor extends Tensor{
             }
         }
     }
+    
+    @Override
+    public Tensor rotate() {
+        ByteTensor flipped = (ByteTensor) createSimilar();
+        int[] indices = new int[dimensions.length];
+        Arrays.fill(indices, 0);
+        rotateRecursive(flipped, 0, indices);
+        return flipped;
+    }
+
+    private void rotateRecursive(ByteTensor tensor, int current, int[] indices) {
+        if (current == indices.length) {
+            tensor.setByteValue(getByteValue(indices), reverseIndex(indices));
+        } else {
+            int next = current + 1;
+            for (int i = 0; i < dimensions[current]; i++) {
+                indices[current] = i;
+                rotateRecursive(tensor, next, indices);
+            }
+        }
+    }
 
     @Override
     public void hadamardProduct(Tensor multiplier) {
