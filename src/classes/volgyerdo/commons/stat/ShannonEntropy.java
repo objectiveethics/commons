@@ -5,7 +5,9 @@
  */
 package volgyerdo.commons.stat;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -153,6 +155,24 @@ public class ShannonEntropy {
         double entropy = 0;
         for (String x : map.keySet()) {
             double frequency = ((double) map.get(x)) / values.length; 
+            entropy -= frequency * (Math.log(frequency) / Math.log(2));
+        }
+        return entropy;
+    }
+    
+    public static double entropy(Collection values) {
+        Map<Object, Integer> map = new HashMap<>();
+        for (Object x : values) {
+            Integer frequency = map.get(x);
+            if (frequency == null) {
+                map.put(x, 1);
+            } else {
+                map.put(x, frequency + 1);
+            }
+        }
+        double entropy = 0;
+        for (Object x : map.keySet()) {
+            double frequency = ((double) map.get(x)) / values.size(); 
             entropy -= frequency * (Math.log(frequency) / Math.log(2));
         }
         return entropy;
