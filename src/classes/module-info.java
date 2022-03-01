@@ -10,6 +10,7 @@ module volgyerdo.math {
     exports volgyerdo.commons.collection;
     exports volgyerdo.commons.math.fast;
     exports volgyerdo.commons.math.tensor;
+    exports volgyerdo.commons.math.probability;
     exports volgyerdo.commons.stat;
 
 }
