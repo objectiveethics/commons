@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 
-module volgyerdo.math {
+module volgyerdo.commons {
 
     exports volgyerdo.commons.primitive;
     exports volgyerdo.commons.collection;
     exports volgyerdo.commons.math.fast;
     exports volgyerdo.commons.math.tensor;
     exports volgyerdo.commons.math.probability;
+    exports volgyerdo.commons.math.formula;
     exports volgyerdo.commons.stat;
+    exports volgyerdo.commons.string;
 
 }
