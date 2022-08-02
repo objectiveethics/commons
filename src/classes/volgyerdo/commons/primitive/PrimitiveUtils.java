@@ -52,6 +52,10 @@ public class PrimitiveUtils {
     public static float toFloat(double x) {
         return (float) min(max(x, -Float.MAX_VALUE), Float.MAX_VALUE);
     }
+    
+    public static int toInt(double x) {
+        return (int) min(max(x, -Integer.MAX_VALUE), Integer.MAX_VALUE);
+    }
 
     public static byte min(byte a, byte b) {
         return a < b ? a : b;
