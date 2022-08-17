@@ -32,12 +32,19 @@ public class CollectionUtils {
         return list.get(list.size() - 1);
     }
 
-    public static List<List> breakApart(List values, int size) {
+    public static List<List> breakApart(List values, int size, boolean withStub) {
         List<List> ret = new ArrayList<>((values.size() + size - 1) / size);
-        int maxIndex = (values.size() / size) * size;
-        for (int start = 0; start < maxIndex; start += size) {
-            List subList = values.subList(start, start + size);
-            ret.add(subList);
+        if (withStub) {
+            for (int start = 0; start < values.size(); start += size) {
+                List subList = values.subList(start, Math.min(values.size(), start + size));
+                ret.add(subList);
+            }
+        } else {
+            int maxIndex = (values.size() / size) * size;
+            for (int start = 0; start < maxIndex; start += size) {
+                List subList = values.subList(start, start + size);
+                ret.add(subList);
+            }
         }
         return ret;
     }
@@ -49,7 +56,7 @@ public class CollectionUtils {
         }
         return chars;
     }
-    
+
     public static List<Character> convertCharArrayToList(char[] chars) {
         List<Character> list = new ArrayList<>();
         for (char x : chars) {
@@ -57,7 +64,7 @@ public class CollectionUtils {
         }
         return list;
     }
-    
+
     public static List<Boolean> convertBooleanArrayToList(boolean[] array) {
         List<Boolean> list = new ArrayList<>(array.length);
         for (boolean x : array) {
@@ -65,7 +72,7 @@ public class CollectionUtils {
         }
         return list;
     }
-    
+
     public static List<Byte> convertByteArrayToList(byte[] array) {
         List<Byte> list = new ArrayList<>(array.length);
         for (byte x : array) {
@@ -73,7 +80,7 @@ public class CollectionUtils {
         }
         return list;
     }
-    
+
     public static List<Short> convertShortArrayToList(short[] chars) {
         List<Short> list = new ArrayList<>();
         for (short x : chars) {
@@ -81,7 +88,7 @@ public class CollectionUtils {
         }
         return list;
     }
-    
+
     public static List<Integer> convertIntArrayToList(int[] chars) {
         List<Integer> list = new ArrayList<>();
         for (int x : chars) {
@@ -89,7 +96,7 @@ public class CollectionUtils {
         }
         return list;
     }
-    
+
     public static List<Long> convertLongArrayToList(long[] chars) {
         List<Long> list = new ArrayList<>();
         for (long x : chars) {
@@ -97,7 +104,7 @@ public class CollectionUtils {
         }
         return list;
     }
-    
+
     public static List<Float> convertFloatArrayToList(float[] chars) {
         List<Float> list = new ArrayList<>();
         for (float x : chars) {
@@ -105,7 +112,7 @@ public class CollectionUtils {
         }
         return list;
     }
-    
+
     public static List<Double> convertDoubleArrayToList(double[] chars) {
         List<Double> list = new ArrayList<>();
         for (double x : chars) {

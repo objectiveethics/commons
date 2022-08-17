@@ -12,7 +12,6 @@ module volgyerdo.commons {
     exports volgyerdo.commons.math.tensor;
     exports volgyerdo.commons.math.probability;
     exports volgyerdo.commons.math.formula;
-    exports volgyerdo.commons.stat;
     exports volgyerdo.commons.string;
 
 }
