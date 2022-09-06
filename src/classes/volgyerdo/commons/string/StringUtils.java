@@ -53,4 +53,18 @@ public class StringUtils {
     private static int costOfSubstitution(char a, char b) {
         return a == b ? 0 : 1;
     }
+    
+    public static String maximizeString(String s, int max, boolean points) {
+        if (s == null) {
+            return null;
+        }
+        if (points) {
+            if (s.length() > max - 3) {
+                return s.substring(0, max - 3) + "...";
+            }
+        } else if (s.length() > max) {
+            return s.substring(0, max);
+        }
+        return s;
+    }
 }
