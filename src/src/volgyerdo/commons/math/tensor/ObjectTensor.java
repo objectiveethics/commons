@@ -255,6 +255,7 @@ public class ObjectTensor extends Tensor {
         throw new RuntimeException("Object tensor doesn't have add function.");
     }
 
+    @Override
     public void substract(Tensor tensor) {
         throw new RuntimeException("Object tensor doesn't have substract function.");
     }

@@ -53,6 +53,7 @@ public class Complex {
     }
 
     // return a string representation of the invoking Complex object
+    @Override
     public String toString() {
         if (im == 0) return re + "";
         if (re == 0) return im + "i";
@@ -151,6 +152,7 @@ public class Complex {
     }
 
     // See Section 3.3.
+    @Override
     public boolean equals(Object x) {
         if (x == null) return false;
         if (this.getClass() != x.getClass()) return false;
@@ -159,6 +161,7 @@ public class Complex {
     }
 
     // See Section 3.3.
+    @Override
     public int hashCode() {
         return Objects.hash(re, im);
     }

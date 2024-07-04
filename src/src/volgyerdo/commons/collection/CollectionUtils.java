@@ -16,6 +16,7 @@
 package volgyerdo.commons.collection;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -32,17 +33,18 @@ public class CollectionUtils {
         return list.get(list.size() - 1);
     }
 
-    public static List<List> breakApart(List values, int size, boolean withStub) {
+    public static List<List> breakApart(Collection values, int size, boolean withStub) {
+        List list = new ArrayList(values);
         List<List> ret = new ArrayList<>((values.size() + size - 1) / size);
         if (withStub) {
             for (int start = 0; start < values.size(); start += size) {
-                List subList = values.subList(start, Math.min(values.size(), start + size));
+                List subList = list.subList(start, Math.min(values.size(), start + size));
                 ret.add(subList);
             }
         } else {
             int maxIndex = (values.size() / size) * size;
             for (int start = 0; start < maxIndex; start += size) {
-                List subList = values.subList(start, start + size);
+                List subList = list.subList(start, start + size);
                 ret.add(subList);
             }
         }
