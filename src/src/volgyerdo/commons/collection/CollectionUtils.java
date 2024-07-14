@@ -50,6 +50,29 @@ public class CollectionUtils {
         }
         return ret;
     }
+    
+    public static List<byte[]> breakApart(byte[] values, int size, boolean withStub) {
+        List<byte[]> ret = new ArrayList<>((values.length + size - 1) / size);
+
+        if (withStub) {
+            for (int start = 0; start < values.length; start += size) {
+                int end = Math.min(values.length, start + size);
+                byte[] subArray = new byte[end - start];
+                System.arraycopy(values, start, subArray, 0, end - start);
+                ret.add(subArray);
+            }
+        } else {
+            int maxIndex = (values.length / size) * size;
+            for (int start = 0; start < maxIndex; start += size) {
+                byte[] subArray = new byte[size];
+                System.arraycopy(values, start, subArray, 0, size);
+                ret.add(subArray);
+            }
+        }
+
+        return ret;
+    }
+
 
     public static List<Character> convertStringToCharList(String str) {
         List<Character> chars = new ArrayList<>();
