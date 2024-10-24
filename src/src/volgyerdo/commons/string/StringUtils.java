@@ -16,8 +16,26 @@ public class StringUtils {
     private StringUtils() {
     }
 
+    public static String constantString(int len, char c) {
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
     public static String randomString(int len, String charSet) {
         StringBuilder sb = new StringBuilder(len);
+        if (charSet == null || charSet.isEmpty()) {
+            return sb.toString();
+        }
+        if (charSet.length() == 1) {
+            for (int i = 0; i < len; i++) {
+                char c = charSet.charAt(0);
+                sb.append(c);
+            }
+            return sb.toString();
+        }
         for (int i = 0; i < len; i++) {
             sb.append(charSet.charAt((int) (Math.random() * charSet.length())));
         }
@@ -53,7 +71,7 @@ public class StringUtils {
     private static int costOfSubstitution(char a, char b) {
         return a == b ? 0 : 1;
     }
-    
+
     public static String maximizeString(String s, int max, boolean points) {
         if (s == null) {
             return null;
