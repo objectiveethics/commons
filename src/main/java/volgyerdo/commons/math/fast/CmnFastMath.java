@@ -233,6 +233,7 @@ abstract class CmnFastMath {
     private static final double SQRT_2 = StrictMath.sqrt(2.0);
     
     static final double LOG_2 = StrictMath.log(2.0);
+    static final double INV_LOG_2 = 1.0 / LOG_2;
     static final double LOG_TWO_POW_27 = StrictMath.log(TWO_POW_27);
     static final double LOG_DOUBLE_MAX_VALUE = StrictMath.log(Double.MAX_VALUE);
 

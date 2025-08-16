@@ -1316,6 +1316,17 @@ public final class FastMath extends CmnFastMath {
         }
     }
 
+    /**
+     * @param value A double value.
+     * @return Value logarithm (base 2).
+     */
+    public static double log2(double value) {
+        if (USE_JDK_MATH) {
+            return Math.log(value) * INV_LOG_2;
+        }
+        return log(value) * INV_LOG_2;
+    }
+
     /*
      * powers
      */

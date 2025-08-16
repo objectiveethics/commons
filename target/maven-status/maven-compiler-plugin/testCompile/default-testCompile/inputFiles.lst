@@ -1,5 +1,7 @@
 /media/PROJECTS/Github/commons/src/test/java/volgyerdo/commons/math/tensor/ShortTensorTest.java
+/media/PROJECTS/Github/commons/src/test/java/volgyerdo/commons/math/fast/FastLogTest.java
 /media/PROJECTS/Github/commons/src/test/java/volgyerdo/commons/math/tensor/FloatTensorTest.java
 /media/PROJECTS/Github/commons/src/test/java/volgyerdo/commons/math/tensor/ByteTensorTest.java
 /media/PROJECTS/Github/commons/src/test/java/volgyerdo/commons/math/probability/NormalDistributionTest.java
 /media/PROJECTS/Github/commons/src/test/java/volgyerdo/commons/primitive/ArrayUtilsTest.java
+/media/PROJECTS/Github/commons/src/test/java/volgyerdo/commons/math/fast/LogComparisonBenchmark.java
