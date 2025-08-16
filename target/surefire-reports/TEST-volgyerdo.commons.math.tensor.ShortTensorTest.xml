@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="28" failures="0" name="volgyerdo.commons.math.tensor.ShortTensorTest" time="0.018" errors="0" skipped="0">
+<testsuite tests="28" failures="0" name="volgyerdo.commons.math.tensor.ShortTensorTest" time="0.016" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="21.0.8+9-LTS"/>
@@ -32,7 +32,7 @@
     <property name="java.class.version" value="65.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="6.8.0-60-generic"/>
+    <property name="os.version" value="6.8.0-65-generic"/>
     <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
     <property name="user.home" value="/home/zsolt"/>
     <property name="user.timezone" value="Europe/Budapest"/>
@@ -40,9 +40,10 @@
     <property name="java.specification.version" value="21"/>
     <property name="user.name" value="zsolt"/>
     <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="error"/>
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -q install"/>
     <property name="java.home" value="/opt/jdk/jdk-21.0.8+9"/>
     <property name="user.language" value="hu"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -61,29 +62,29 @@
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testRotateTensor" time="0"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testAddByte" time="0"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testRandomizeFloat" time="0"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testRandomizeShort" time="0.001"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testGetShortValue" time="0.001"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testGetByteValue" time="0.001"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testRandomizeShort" time="0"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testGetShortValue" time="0"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testGetByteValue" time="0"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testConvolvePartial" time="0.001"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSetObjectValue" time="0"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testCloneTensor" time="0.002"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testAddFloat" time="0"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testCloneTensor" time="0"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testAddFloat" time="0.001"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testAddShort" time="0"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSetShortValue" time="0"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testHadamardProduct" time="0.001"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSetShortValue" time="0.001"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testHadamardProduct" time="0"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSubstractByte" time="0"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testRandomizeByte" time="0"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testConvolve" time="0.002"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSubstarctTensor" time="0.003"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testConvolve" time="0.004"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSubstarctTensor" time="0"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testTransposeTensor" time="0"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSetByteValue" time="0"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testGetFloatValue" time="0"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSetByteValue" time="0.001"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testGetFloatValue" time="0.001"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testAddTensor" time="0"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testGetObjectValue" time="0.002"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testGetObjectValue" time="0.001"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testNegateTensor" time="0"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testEquals" time="0.002"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSetFloatValue" time="0"/>
-  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testMultiply" time="0.002"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testEquals" time="0.001"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSetFloatValue" time="0.002"/>
+  <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testMultiply" time="0.003"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSubstractFloat" time="0"/>
   <testcase classname="volgyerdo.commons.math.tensor.ShortTensorTest" name="testSubstarctShort" time="0"/>
 </testsuite>

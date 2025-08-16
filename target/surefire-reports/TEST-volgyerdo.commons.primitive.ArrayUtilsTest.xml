@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="38" failures="0" name="volgyerdo.commons.primitive.ArrayUtilsTest" time="0.222" errors="0" skipped="0">
+<testsuite tests="38" failures="0" name="volgyerdo.commons.primitive.ArrayUtilsTest" time="0.267" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="21.0.8+9-LTS"/>
@@ -32,7 +32,7 @@
     <property name="java.class.version" value="65.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="6.8.0-60-generic"/>
+    <property name="os.version" value="6.8.0-65-generic"/>
     <property name="library.jansi.path" value="/usr/share/maven/lib/jansi-native"/>
     <property name="user.home" value="/home/zsolt"/>
     <property name="user.timezone" value="Europe/Budapest"/>
@@ -40,9 +40,10 @@
     <property name="java.specification.version" value="21"/>
     <property name="user.name" value="zsolt"/>
     <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="error"/>
     <property name="java.vm.specification.version" value="21"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -q install"/>
     <property name="java.home" value="/opt/jdk/jdk-21.0.8+9"/>
     <property name="user.language" value="hu"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -58,25 +59,25 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="java.vendor.version" value="Temurin-21.0.8+9"/>
   </properties>
-  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testReverse_shortArr" time="0.001"/>
-  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testMultiply_shortArr_short" time="0.001"/>
+  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testReverse_shortArr" time="0"/>
+  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testMultiply_shortArr_short" time="0"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testToByteArray_floatArr" time="0"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testSum" time="0"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testDevide_floatArr_float" time="0"/>
-  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testToByteArray_longArr" time="0.001"/>
+  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testToByteArray_longArr" time="0"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testProduct" time="0"/>
-  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testDoubleBooleanConversion" time="0.05"/>
+  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testDoubleBooleanConversion" time="0.08"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testAdd_shortArr_short" time="0"/>
-  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testByteBooleanConversion" time="0.014"/>
+  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testByteBooleanConversion" time="0.008"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testMultiply_floatArr_float" time="0"/>
-  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testIntBooleanConversion" time="0.109"/>
+  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testIntBooleanConversion" time="0.129"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testToByteArray_charArr" time="0"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testToByteArray_doubleArr" time="0"/>
-  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testLongBooleanConversion" time="0.036"/>
+  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testLongBooleanConversion" time="0.012"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testReverse_floatArr" time="0"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testToByteArray_shortArr" time="0"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testProcess_floatArr_FloatArrayOperator" time="0"/>
-  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testFloatBooleanConversion" time="0.01"/>
+  <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testFloatBooleanConversion" time="0.038"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testRandomize_3args_1" time="0"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testRandomize_3args_2" time="0"/>
   <testcase classname="volgyerdo.commons.primitive.ArrayUtilsTest" name="testRandomize_3args_3" time="0"/>
