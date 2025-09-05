@@ -25,7 +25,9 @@
 /media/PROJECTS/Github/commons/src/main/java/volgyerdo/commons/math/probability/NormalDistribution.java
 /media/PROJECTS/Github/commons/src/main/java/volgyerdo/commons/primitive/Complex.java
 /media/PROJECTS/Github/commons/src/main/java/volgyerdo/commons/string/StringUtils.java
+/media/PROJECTS/Github/commons/src/main/java/volgyerdo/commons/diagram/DataSeries.java
 /media/PROJECTS/Github/commons/src/main/java/volgyerdo/commons/primitive/ArrayUtils.java
+/media/PROJECTS/Github/commons/src/main/java/volgyerdo/commons/diagram/PlotPanel2D.java
 /media/PROJECTS/Github/commons/src/main/java/volgyerdo/commons/collection/CollectionUtils.java
 /media/PROJECTS/Github/commons/src/main/java/volgyerdo/commons/math/tensor/FloatTensor.java
 /media/PROJECTS/Github/commons/src/main/java/volgyerdo/commons/math/fast/FastLog.java

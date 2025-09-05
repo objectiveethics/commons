@@ -163,8 +163,8 @@ public class PlotPanel2D extends JPanel {
         buttonPanel.add(yScaleCombo);
         buttonPanel.add(new JLabel("Zoom:"));
         buttonPanel.add(zoomModeCombo);
-        buttonPanel.add(zoomInButton);
         buttonPanel.add(zoomOutButton);
+        buttonPanel.add(zoomInButton);
         buttonPanel.add(resetButton);
 
         setLayout(new BorderLayout());
@@ -689,11 +689,10 @@ public class PlotPanel2D extends JPanel {
             g2.setFont(titleFont);
             g2.setColor(textColor);
             
-            FontMetrics titleMetrics = g2.getFontMetrics();
-            int titleWidth = titleMetrics.stringWidth(plotTitle);
+            int titleWidth = getSpecialStringWidth(g2, plotTitle);
             int x = (getWidth() - titleWidth) / 2;
             int y = titlePadding + 5; // Move title 5 pixels down
-            g2.drawString(plotTitle, x, y);
+            drawSpecialString(g2, plotTitle, x, y);
         }
         
         // Create larger, bold font for axis labels
@@ -701,18 +700,16 @@ public class PlotPanel2D extends JPanel {
         g2.setFont(axisLabelFont);
         g2.setColor(textColor);
         
-        FontMetrics metrics = g2.getFontMetrics();
-        
         // Draw X-axis label (horizontal, at bottom)
         if (!xAxisLabel.isEmpty()) {
             // Use dynamic padding calculation for consistency
             int[] padding = calculateTotalPadding(g2);
             int totalXPadding = padding[0];
             int chartWidth = getWidth() - 2 * margin - totalXPadding;
-            int labelWidth = metrics.stringWidth(xAxisLabel);
+            int labelWidth = getSpecialStringWidth(g2, xAxisLabel);
             int x = margin + totalXPadding + (chartWidth - labelWidth) / 2;
             int y = getHeight() - 45; // Moved closer to bottom (was 70)
-            g2.drawString(xAxisLabel, x, y);
+            drawSpecialString(g2, xAxisLabel, x, y);
         }
         
         // Draw Y-axis label (vertical, at left)
@@ -732,14 +729,14 @@ public class PlotPanel2D extends JPanel {
             }
             
             // Calculate position for vertical text
-            int labelWidth = metrics.stringWidth(displayLabel);
+            int labelWidth = getSpecialStringWidth(g2, displayLabel);
             int x = 25; // Reduced padding by another 5 pixels (was 30)
             int y = margin + (chartHeight + labelWidth) / 2;
             
             // Rotate and draw the text
             g2.translate(x, y);
             g2.rotate(-Math.PI / 2);
-            g2.drawString(displayLabel, 0, 0);
+            drawSpecialString(g2, displayLabel, 0, 0);
             
             // Restore the original transform
             g2.setTransform(oldTransform);
@@ -918,6 +915,118 @@ public class PlotPanel2D extends JPanel {
         }
     }
     
+    // Special text renderer for subscript notation
+    private void drawSpecialString(Graphics2D g2, String text, int x, int y) {
+        if (text == null || text.isEmpty()) {
+            return;
+        }
+        
+        Font originalFont = g2.getFont();
+        FontMetrics originalMetrics = g2.getFontMetrics();
+        
+        // Create subscript font (smaller size)
+        Font subscriptFont = new Font(originalFont.getName(), originalFont.getStyle(), 
+                                      (int)(originalFont.getSize() * 0.7));
+        FontMetrics subscriptMetrics = g2.getFontMetrics(subscriptFont);
+        
+        int currentX = x;
+        int baselineY = y;
+        int subscriptOffsetY = (int)(originalMetrics.getHeight() * 0.3); // Offset for subscript
+        
+        StringBuilder currentText = new StringBuilder();
+        boolean inSubscript = false;
+        
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            
+            if (c == '_') {
+                // Draw current accumulated text
+                if (currentText.length() > 0) {
+                    if (inSubscript) {
+                        g2.setFont(subscriptFont);
+                        g2.drawString(currentText.toString(), currentX, baselineY + subscriptOffsetY);
+                        currentX += subscriptMetrics.stringWidth(currentText.toString());
+                    } else {
+                        g2.setFont(originalFont);
+                        g2.drawString(currentText.toString(), currentX, baselineY);
+                        currentX += originalMetrics.stringWidth(currentText.toString());
+                    }
+                    currentText.setLength(0);
+                }
+                
+                // Toggle subscript mode
+                inSubscript = !inSubscript;
+            } else {
+                currentText.append(c);
+            }
+        }
+        
+        // Draw remaining text
+        if (currentText.length() > 0) {
+            if (inSubscript) {
+                g2.setFont(subscriptFont);
+                g2.drawString(currentText.toString(), currentX, baselineY + subscriptOffsetY);
+            } else {
+                g2.setFont(originalFont);
+                g2.drawString(currentText.toString(), currentX, baselineY);
+            }
+        }
+        
+        // Restore original font
+        g2.setFont(originalFont);
+    }
+    
+    // Calculate the width of special text with subscript notation
+    private int getSpecialStringWidth(Graphics2D g2, String text) {
+        if (text == null || text.isEmpty()) {
+            return 0;
+        }
+        
+        Font originalFont = g2.getFont();
+        FontMetrics originalMetrics = g2.getFontMetrics();
+        
+        // Create subscript font (smaller size)
+        Font subscriptFont = new Font(originalFont.getName(), originalFont.getStyle(), 
+                                      (int)(originalFont.getSize() * 0.7));
+        FontMetrics subscriptMetrics = g2.getFontMetrics(subscriptFont);
+        
+        int totalWidth = 0;
+        StringBuilder currentText = new StringBuilder();
+        boolean inSubscript = false;
+        
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            
+            if (c == '_') {
+                // Calculate width of current accumulated text
+                if (currentText.length() > 0) {
+                    if (inSubscript) {
+                        totalWidth += subscriptMetrics.stringWidth(currentText.toString());
+                    } else {
+                        totalWidth += originalMetrics.stringWidth(currentText.toString());
+                    }
+                    currentText.setLength(0);
+                }
+                
+                // Toggle subscript mode
+                inSubscript = !inSubscript;
+            } else {
+                currentText.append(c);
+            }
+        }
+        
+        // Calculate width of remaining text
+        if (currentText.length() > 0) {
+            if (inSubscript) {
+                totalWidth += subscriptMetrics.stringWidth(currentText.toString());
+            } else {
+                totalWidth += originalMetrics.stringWidth(currentText.toString());
+            }
+        }
+        
+        return totalWidth;
+    }
+
     // Coordinate transformation helper methods for Y-axis only
     private double transformYValue(double y) {
         if (yScaleType == ScaleType.LOGARITHMIC) {
@@ -950,6 +1059,11 @@ public class PlotPanel2D extends JPanel {
                     new DataSeries("Series 3", List.of(new Point2D.Float(1, 2), new Point2D.Float(2, 3), new Point2D.Float(3, 4)), Color.GREEN, true, true)
             );
             scatterPlotPanel.setDataSeries(dataSeriesList);
+            
+            // Demonstrate subscript functionality
+            scatterPlotPanel.setPlotTitle("Sample Plot with _subscript_ text");
+            scatterPlotPanel.setXAxisLabel("X axis with _subscript_ notation");
+            scatterPlotPanel.setYAxisLabel("Y_sub_ axis label");
         });
     }
 
