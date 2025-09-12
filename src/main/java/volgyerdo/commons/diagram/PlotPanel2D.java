@@ -769,7 +769,7 @@ public class PlotPanel2D extends JPanel {
     private void drawLegend(Graphics2D g, int padding) {
         int labelWidth = 0;
         for (DataSeries series : dataSeriesList) {
-            labelWidth = (int) Math.max(labelWidth, g.getFontMetrics().getStringBounds(series.getName(), g).getWidth());
+            labelWidth = (int) Math.max(labelWidth, getSpecialStringWidth(g, series.getName()));
         }
         labelWidth += 40;
 
@@ -788,7 +788,7 @@ public class PlotPanel2D extends JPanel {
             g.setColor(series.getColor());
             g.fillRect(legendX + 10, legendEntryY - 10, 10, 10);
             g.setColor(textColor);
-            g.drawString(series.getName(), legendX + 25, legendEntryY);
+            drawSpecialString(g, series.getName(), legendX + 25, legendEntryY);
             legendEntryY += 20;
         }
     }
